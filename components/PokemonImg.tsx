@@ -5,7 +5,15 @@ import PokemonTypes from "./PokemonTypes";
 
 interface PokemonDetail {
   sprites: {
-    front_default: string;
+    versions: {
+      "generation-v": {
+        "black-white": {
+          animated: {
+            front_default: any;
+          };
+        };
+      };
+    };
   };
   types: { type: { name: string } }[];
 }
@@ -28,15 +36,26 @@ const PokemonImage = ({ pokemon }: { pokemon: Pokemon }) => {
     getPokemonDetail();
   }, []);
 
+  if (!pokemonDetail) {
+    return null;
+  }
+
+  const pokemonGif =
+    pokemonDetail.sprites.versions["generation-v"]["black-white"].animated
+      .front_default;
   return (
     <View style={styles.container}>
       <Text style={styles.pokemonName}>{pokemon.name}</Text>
-      {pokemonDetail && (
+      <View style={styles.pokemonGifContainer}>
         <Image
-          source={{ uri: pokemonDetail.sprites.front_default }}
+          width={50}
+          height={50}
+          source={{
+            uri: pokemonGif,
+          }}
           style={styles.pokemonImg}
         />
-      )}
+      </View>
       {pokemonDetail && <PokemonTypes types={pokemonDetail.types} />}
     </View>
   );
@@ -46,7 +65,7 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     alignItems: "stretch",
-    padding:15,
+    padding: 15,
     borderWidth: 2,
     borderColor: "white",
     justifyContent: "space-between",
@@ -57,8 +76,16 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   pokemonImg: {
-    width: 100,
-    height: 100,
+    width: 50,
+    height: 50,
+    aspectRatio: 1,
+    resizeMode: "contain",
+  },
+  pokemonGifContainer: {
+    display: "flex",
+    justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
   },
   pokemonType: {
     display: "flex",
