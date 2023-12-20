@@ -80,42 +80,42 @@ interface Stat {
   url: string;
 }
 
-interface Stats {
+export interface Stats {
   base_stat: number;
   effort: number;
   stat: Stat;
 }
 
-interface TypeDetails {
+export interface TypeDetails {
   name: string;
   url: string;
 }
 
-interface Types {
+export interface Types {
   slot: number;
   type: TypeDetails;
 }
 
-interface Pokemon {
-    name: string;
-    url: string;
-//   abilities: Ability[];
-//   base_experience: number;
-//   forms: Form[];
-//   game_indices: GameIndex[];
-//   height: number;
-//   held_items: HeldItems[];
-//   id: number;
-//   is_default: boolean;
-//   location_area_encounters: string;
-//   moves: Moves[];
-//   name: string;
-//   order: number;
-//   past_abilities: [];
-//   past_types: [];
-//   species: Species;
-//   sprites: any; // Keeping 'any' as the type due to complex nested structure
-//   stats: Stats[];
-//   types: Types[];
-//   weight: number;
+export interface Pokemon {
+  name: string;
+  url: string;
+  //   abilities: Ability[];
+  //   base_experience: number;
+  //   forms: Form[];
+  //   game_indices: GameIndex[];
+  //   height: number;
+  //   held_items: HeldItems[];
+  //   id: number;
+  //   is_default: boolean;
+  //   location_area_encounters: string;
+  //   moves: Moves[];
+  //   name: string;
+  //   order: number;
+  //   past_abilities: [];
+  //   past_types: [];
+  //   species: Species;
+  //   sprites: any; // Keeping 'any' as the type due to complex nested structure
+  //   stats: Stats[];
+  types: Types[];
+  //   weight: number;
 }
