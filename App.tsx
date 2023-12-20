@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
+import PokemonImg from "./components/PokemonImg";
 
 export default function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -15,12 +16,15 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Pokemons list</Text>
+    <View>
+      <Text style={styles.title}>Pokemons list</Text>
       <ScrollView>
         {pokemons.map((pokemon) => (
-          <Text key={pokemon.id}>{pokemon.name}</Text>
+          <View style={styles.container}>
+            <Text key={pokemon.id}>{pokemon.name}</Text>
+          </View>
         ))}
+        <PokemonImg />
       </ScrollView>
       <StatusBar style="auto" />
     </View>
@@ -30,8 +34,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "red",
     alignItems: "center",
-    justifyContent: "center",
+    padding: 20,
+    width: "80%",
+    color: "black",
+    borderColor: "black",
+    borderWidth: 2,
+  },
+  title: {
+    fontWeight: "800",
+    fontSize: 30,
   },
 });
