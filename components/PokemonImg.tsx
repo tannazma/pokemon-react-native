@@ -1,41 +1,42 @@
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
 
-interface Pokemon {
-  id: number;
-  name: string;
-  location_area_encounters: string;
-  sprites: {
-    front_default: string;
-  };
-}
-
-const PokemonImg = () => {
-  const [pokemonImg, setPokemonImg] = useState<null | Pokemon>(null);
-
-  useEffect(() => {
-    const getPokemonsWithImg = async () => {
-      const response = await fetch("https://pokeapi.co/api/v2/pokemon/1");
-      const data = await response.json();
-      setPokemonImg(data.front_default);
+interface PokemonDetail {
+    sprites: {
+      front_default: string;
     };
-
-    getPokemonsWithImg();
-  }, []);
-
-  return (
-    <View style={styles.container}>
-      {pokemonImg && (
-        <ScrollView>
+  }
+  
+  const PokemonImage = ({ pokemon }: { pokemon: Pokemon }) => {
+    const [pokemonDetail, setPokemonDetail] = useState<null | PokemonDetail>(
+      null
+    );
+  
+    useEffect(() => {
+      const getPokemonDetail = async () => {
+        const response = await fetch(pokemon.url);
+        const data = await response.json();
+        // console.log(data);
+        // console.log(pokemon.url);
+        // console.log(pokemonDetail.sprites.front_default);
+        setPokemonDetail(data);
+      };
+  
+      getPokemonDetail();
+    }, []);
+  
+    return (
+      <View style={styles.container}>
+        <Text>{pokemon.name}</Text>
+        {pokemonDetail && (
           <Image
-            source={{ uri: pokemonImg.sprites.front_default }}
-            style={styles.pokemonImage}
+            source={{ uri: pokemonDetail.sprites.front_default }}
+            style={styles.pokemonImg}
           />
-        </ScrollView>
-      )}
-    </View>
-  );
-};
+        )}
+      </View>
+    );
+  };
 
 const styles = StyleSheet.create({
   container: {
@@ -44,9 +45,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  pokemonImage: {
+  pokemonImg: {
     width: 100,
     height: 100,
   },
 });
-export default PokemonImg;
+export default PokemonImage;
