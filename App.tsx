@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import PokemonImage from "./components/PokemonImg";
-import { Pokemon, Types } from "./types";
+import { Pokemon } from "./types";
 
 export default function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
