@@ -30,17 +30,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "red",
-    alignItems: "center",
-    padding: 20,
-    width: "80%",
-    color: "black",
-    borderColor: "black",
-    borderWidth: 2,
+    width: "100%",
+    marginTop: 20,
   },
   title: {
     fontWeight: "800",
     fontSize: 30,
+    marginTop: 40
   },
 });
