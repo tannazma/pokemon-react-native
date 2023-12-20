@@ -46,10 +46,12 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     alignItems: "stretch",
+    padding:15,
     borderWidth: 2,
     borderColor: "white",
     justifyContent: "space-between",
-    backgroundColor: "lightgray",
+    backgroundColor: "thistle",
+    borderRadius: 15,
     width: "33%",
     paddingBottom: 12,
     paddingTop: 10,
