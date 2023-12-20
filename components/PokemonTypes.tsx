@@ -64,7 +64,7 @@ const PokemonTypes = ({ types }: PokemonDetail) => {
           );
         } else {
           return (
-            <Text>
+            <Text key={index}>
               <Text>👻</Text>
               {type.type.name}
             </Text>
