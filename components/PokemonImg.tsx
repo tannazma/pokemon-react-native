@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { Pokemon } from "../types";
+import PokemonTypes from "./PokemonTypes";
 
 interface PokemonDetail {
   sprites: {
@@ -36,14 +37,7 @@ const PokemonImage = ({ pokemon }: { pokemon: Pokemon }) => {
           style={styles.pokemonImg}
         />
       )}
-      <View>
-        <Text style={styles.pokemonType}>
-          {pokemonDetail &&
-            pokemonDetail.types.map((t, i) => {
-              return <Text key={i}>{t.type.name}</Text>;
-            })}
-        </Text>
-      </View>
+      {pokemonDetail && <PokemonTypes types={pokemonDetail.types} />}
     </View>
   );
 };
@@ -69,13 +63,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     fontWeight: "200",
     fontSize: 20,
-    textAlign:"center"
+    textAlign: "center",
+    textTransform: "capitalize",
   },
   pokemonName: {
     textAlign: "center",
     fontWeight: "600",
     fontSize: 20,
     color: "white",
+    textTransform: "capitalize",
   },
 });
 export default PokemonImage;
