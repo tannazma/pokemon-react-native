@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
+import { Pokemon } from "../types";
 
 interface PokemonDetail {
   sprites: {
     front_default: string;
   };
+  types: { type: { name: string } }[];
 }
 
 const PokemonImage = ({ pokemon }: { pokemon: Pokemon }) => {
@@ -27,15 +29,19 @@ const PokemonImage = ({ pokemon }: { pokemon: Pokemon }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.pokemonBlock}>
-        <Text style={styles.pokemonName}>
-          {pokemon.name}
-          {pokemonDetail && (
-            <Image
-              source={{ uri: pokemonDetail.sprites.front_default }}
-              style={styles.pokemonImg}
-            />
-          )}
+      <Text style={styles.pokemonName}>{pokemon.name}</Text>
+      {pokemonDetail && (
+        <Image
+          source={{ uri: pokemonDetail.sprites.front_default }}
+          style={styles.pokemonImg}
+        />
+      )}
+      <View>
+        <Text style={styles.pokemonType}>
+          {pokemonDetail &&
+            pokemonDetail.types.map((t, i) => {
+              return <Text key={i}>{t.type.name}</Text>;
+            })}
         </Text>
       </View>
     </View>
@@ -48,17 +54,26 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     borderWidth: 2,
     borderColor: "white",
-  },
-  pokemonBlock: {
     justifyContent: "space-between",
+    backgroundColor: "lightgray",
+    width: "33%",
+    paddingBottom: 12,
+    paddingTop: 10,
   },
   pokemonImg: {
     width: 100,
     height: 100,
   },
+  pokemonType: {
+    display: "flex",
+    flexDirection: "row",
+    fontWeight: "200",
+    fontSize: 20,
+    textAlign:"center"
+  },
   pokemonName: {
-    backgroundColor: "green",
-    fontWeight: "800",
+    textAlign: "center",
+    fontWeight: "600",
     fontSize: 20,
     color: "white",
   },
