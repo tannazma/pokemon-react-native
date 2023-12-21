@@ -4,6 +4,7 @@ import { Pokemon } from "../types";
 import PokemonTypes from "./PokemonTypes";
 
 interface PokemonDetail {
+  id: number;
   sprites: {
     versions: {
       "generation-v": {
@@ -18,7 +19,13 @@ interface PokemonDetail {
   types: { type: { name: string } }[];
 }
 
-const PokemonImage = ({ pokemon }: { pokemon: Pokemon }) => {
+const PokemonImage = ({
+  pokemon,
+  navigation,
+}: {
+  pokemon: Pokemon;
+  navigation: any;
+}) => {
   const [pokemonDetail, setPokemonDetail] = useState<null | PokemonDetail>(
     null
   );
@@ -44,8 +51,15 @@ const PokemonImage = ({ pokemon }: { pokemon: Pokemon }) => {
     pokemonDetail.sprites.versions["generation-v"]["black-white"].animated
       .front_default;
   return (
-    <View style={styles.container}>
-      <Text style={styles.pokemonName}>{pokemon.name}</Text>
+    <View
+      style={styles.container}
+      onTouchEnd={() =>
+        navigation.navigate("Pokemon", { id: pokemonDetail.id })
+      }
+    >
+      <Text style={styles.pokemonName}>
+        {pokemon.name}
+      </Text>
       <View style={styles.pokemonGifContainer}>
         <Image
           width={50}
