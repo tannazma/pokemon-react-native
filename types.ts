@@ -105,7 +105,7 @@ export interface Pokemon {
   //   game_indices: GameIndex[];
   //   height: number;
   //   held_items: HeldItems[];
-  //   id: number;
+    id: number;
   //   is_default: boolean;
   //   location_area_encounters: string;
   //   moves: Moves[];
