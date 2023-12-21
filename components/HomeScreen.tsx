@@ -27,7 +27,11 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView>
         <View style={styles.container}>
           {pokemons.map((pokemon, index) => (
-            <PokemonImage key={index} pokemon={pokemon} />
+            <PokemonImage
+              navigation={navigation}
+              key={index}
+              pokemon={pokemon}
+            />
           ))}
         </View>
       </ScrollView>
